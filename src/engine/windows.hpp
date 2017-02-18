@@ -31,6 +31,9 @@ namespace rb {
             case 'D':
               gameControls.right = true;
               break;
+            case'~':
+              gameControls.tilde = true;
+              break;
           }
         }
 
@@ -47,6 +50,9 @@ namespace rb {
               break;
             case 'D':
               gameControls.right = false;
+              break;
+            case'~':
+              gameControls.tilde = false;
               break;
           }
         }
