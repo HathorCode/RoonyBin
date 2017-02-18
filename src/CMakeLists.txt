@@ -17,15 +17,7 @@ file(GLOB_RECURSE allCodeFiles RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.hpp" "*.c
 if(WIN32)
   add_executable(RoonyBin WIN32 ${allCodeFiles})
 
-  #Because I want the console window, we can remove parts of this later on
-  set_target_properties(RoonyBin PROPERTIES LINK_FLAGS_DEBUG "/SUBSYSTEM:CONSOLE")
-  set_target_properties(RoonyBin PROPERTIES COMPILE_DEFINITIONS_DEBUG "_CONSOLE")
-  set_target_properties(RoonyBin PROPERTIES LINK_FLAGS_RELWITHDEBINFO "/SUBSYSTEM:CONSOLE")
-  set_target_properties(RoonyBin PROPERTIES COMPILE_DEFINITIONS_RELWITHDEBINFO "_CONSOLE")
-  set_target_properties(RoonyBin PROPERTIES LINK_FLAGS_RELEASE "/SUBSYSTEM:windows")
-  set_target_properties(RoonyBin PROPERTIES LINK_FLAGS_MINSIZEREL "/SUBSYSTEM:windows")
-  target_compile_definitions(RoonyBin
-	PRIVATE rblinkPlatWin)
+  target_compile_definitions(RoonyBin PRIVATE rblinkPlatWin)
   target_link_libraries(RoonyBin OpenGL32)
   #Warning level 4
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
