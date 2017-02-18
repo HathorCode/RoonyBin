@@ -6,6 +6,8 @@
 #include "FoxLib\FoxLib.hpp"
 #include "engine\touchme.hpp"
 
+#include "engine\renderer\texture.hpp"
+
 namespace rb {
   void gameLoop() {
     // Handle game time here
@@ -15,6 +17,8 @@ namespace rb {
       //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
       glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
       glClear(GL_COLOR_BUFFER_BIT);
+	  int test = (int)texture.loadTexture("lock.png");
+	  
     }
   }
 }
