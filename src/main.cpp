@@ -29,11 +29,10 @@ namespace rb {
     while(true) {
       win.handleInput();
       //rendering eventually goes here
-      //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
       glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-      glClear(GL_COLOR_BUFFER_BIT);
-	  int test = (int)texture.loadTexture("lock.png");
-	  
+      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	  	//int test = (int)texture.loadTexture("lock.png");
+
     }
   }
 }
