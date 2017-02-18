@@ -4,6 +4,7 @@
 #include "engine/opengl.hpp"
 #include "engine/platform.hpp"
 #include "FoxLib/FoxLib.hpp"
+#include "engine\TouchMe.hpp"
 
 namespace rb {
   void gameLoop() {
@@ -33,6 +34,14 @@ int WINAPI WinMain(HINSTANCE paramHInstance, HINSTANCE hPrevInstance, LPSTR pCmd
       ExitProgram();
     }
   }
+
+  /* //Enable this code to check for multitouch support
+  if (!touch.touchCheck()) {
+	  //check for touch compatibility
+	  rb::log.write("[Main.cpp] MultiTouch not supported");
+	  ExitProgram();
+  }
+  */
 
   gl.init();
   gameLoop();

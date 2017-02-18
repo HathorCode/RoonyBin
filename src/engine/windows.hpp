@@ -4,7 +4,7 @@
 
 #include "log.hpp"
 #include "platform.hpp"
-#include "FoxLib/FoxLib.hpp"
+#include "FoxLib\FoxLib.hpp"
 
 #include "game/controls.hpp"
 
@@ -138,7 +138,7 @@ namespace rb {
       }
 
 
-    }win;
+    } win;
 
     HWND GetSharedWndHandle() {
       return win.windowHandle;
