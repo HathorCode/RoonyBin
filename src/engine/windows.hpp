@@ -113,6 +113,7 @@ namespace rb {
           }
           ShowWindow(windowHandle, SW_SHOWDEFAULT);
           UpdateWindow(windowHandle);
+		  RegisterTouchWindow(windowHandle, 0);
           return true;
         } else {
           log.write("[Windows.hpp] Could not create window.\n");

@@ -4,6 +4,7 @@
 #include "log.hpp"
 #include "platform.hpp"
 #include "FoxLib\FoxLib.hpp"
+#include "windows.hpp"
 
 namespace rb {
 
@@ -17,7 +18,6 @@ namespace rb {
 				return true;
 			} else { return false; }
 		}
-
 
 
 	} touch;
