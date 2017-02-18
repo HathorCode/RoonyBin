@@ -33,8 +33,8 @@ endif()
 #Load libraries (must come after add_executable)
 #target_link_libraries(RoonyBin glfw/glfw3)
 #target_link_libraries(OpenGL assimp/assimp)
-target_link_libraries(RoonyBin glew/glew32)
-target_link_libraries(RoonyBin glew/glew32s)
+#target_link_libraries(RoonyBin glew/glew32)
+#target_link_libraries(RoonyBin glew/glew32s)
 
 #Fix Visual studio source groups to correspond to the folder they're in
 foreach(src ${allCodeFiles})
@@ -52,7 +52,7 @@ file(GLOB_RECURSE shaders RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.vs" "*.fs")
 foreach(shader ${shaders})
   file(COPY ${shader} DESTINATION "${CMAKE_BINARY_DIR}/shaders")
 endforeach()
-file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/glew/glew32.dll" DESTINATION "${CMAKE_BINARY_DIR}")
+#file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/glew/glew32.dll" DESTINATION "${CMAKE_BINARY_DIR}")
 
 #Copies over the res folder stuff
 file(GLOB_RECURSE images RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.png")
