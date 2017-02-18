@@ -8,7 +8,7 @@
 
 namespace rb {
   /* Proper shader usage: load the shaders, and then init them, which activates them */
-  struct Shaders {
+  struct Shader {
     GLuint shaderID;
 
     /* Activates the previously linked shader program */
@@ -17,7 +17,7 @@ namespace rb {
     }
 
     /* Loads a vertex and fragment shader, and compiles them into a shader program */
-    void loadShaders(const char* vertexFileName, const char* fragmentFileName) {
+    GLuint loadShaders(const char* vertexFileName, const char* fragmentFileName) {
       GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 
       char* vertexShaderSource = io.loadFromFile(vertexFileName);
@@ -56,6 +56,8 @@ namespace rb {
 
       glDeleteShader(vertexShader);
       glDeleteShader(fragmentShader);
+      this->shaderID = shaderProgram;
+      return shaderProgram;
     }
-  }
+  };
 }
