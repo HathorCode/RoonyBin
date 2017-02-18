@@ -7,6 +7,7 @@
 #include "FoxLib\FoxLib.hpp"
 #include "engine\touchme.hpp"
 
+<<<<<<< HEAD
 #define MAXPOINTS 10
 
 static int radius = 50;
@@ -21,6 +22,9 @@ circle circlesArray[MAXPOINTS];
 int touchCount = 0;
 int cycleCount = 0;
 
+=======
+#include "engine\renderer\texture.hpp"
+>>>>>>> e800e27ac11a98b632db0c6f1a4ef7ef648c50b3
 
 namespace rb {
   void gameLoop() {
@@ -31,6 +35,8 @@ namespace rb {
       //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
       glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
       glClear(GL_COLOR_BUFFER_BIT);
+	  int test = (int)texture.loadTexture("lock.png");
+	  
     }
   }
 }
