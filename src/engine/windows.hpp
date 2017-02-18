@@ -1,12 +1,12 @@
 #pragma once
 
 #include <Windows.h>
-
+#include "pedophile.hpp"
 #include "log.hpp"
 #include "platform.hpp"
 #include "FoxLib\FoxLib.hpp"
 
-#include "game/controls.hpp"
+#include "game\controls.hpp"
 
 namespace rb {
   struct Window {

@@ -1,10 +1,10 @@
 #include <Windows.h>
 
-#include "engine/log.hpp"
-#include "engine/opengl.hpp"
-#include "engine/platform.hpp"
-#include "FoxLib/FoxLib.hpp"
-#include "engine\TouchMe.hpp"
+#include "engine\log.hpp"
+#include "engine\opengl.hpp"
+#include "engine\platform.hpp"
+#include "FoxLib\FoxLib.hpp"
+#include "engine\touchme.hpp"
 
 namespace rb {
   void gameLoop() {
