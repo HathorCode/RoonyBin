@@ -6,6 +6,8 @@
 #include "platform.hpp"
 #include "FoxLib\FoxLib.hpp"
 
+#include "game/controls.hpp"
+
 namespace rb {
   struct Window {
     HWND windowHandle;
@@ -18,16 +20,16 @@ namespace rb {
         case WM_KEYDOWN: {
           switch(wParam) {
             case 'W':
-              // Do thing as in handle input in controls class
+              gameControls.up = true;
               break;
             case 'S':
-              // Do thing
+              gameControls.down = true;
               break;
             case 'A':
-              // Do thing
+              gameControls.left = true;
               break;
             case 'D':
-              // Do thing
+              gameControls.right = true;
               break;
           }
         }
@@ -35,16 +37,16 @@ namespace rb {
         case WM_KEYUP:{
           switch(wParam) {
             case 'W':
-              // Do thing
+              gameControls.up = false;
               break;
             case 'S':
-              // Do thing
+              gameControls.down = false;
               break;
             case 'A':
-              // Do thing
+              gameControls.left = false;
               break;
             case 'D':
-              // Do thing
+              gameControls.right = false;
               break;
           }
         }
