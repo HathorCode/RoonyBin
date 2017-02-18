@@ -3,12 +3,18 @@
 #include "engine/log.hpp"
 #include "engine/opengl.hpp"
 #include "engine/platform.hpp"
-
 #include "FoxLib/FoxLib.hpp"
 
-void gameLoop() {
-  // Handle game time here
-
+namespace rb {
+  void gameLoop() {
+    // Handle game time here
+    while(true) {
+      win.handleInput();
+      //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+      glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+      glClear(GL_COLOR_BUFFER_BIT);
+    }
+  }
 }
 
 int WINAPI WinMain(HINSTANCE paramHInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow) {
