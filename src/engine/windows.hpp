@@ -4,7 +4,7 @@
 
 #include "log.hpp"
 #include "platform.hpp"
-#include "FoxLib/FoxLib.hpp"
+#include "FoxLib\FoxLib.hpp"
 
 namespace rb {
   struct Window {
@@ -130,7 +130,7 @@ namespace rb {
       }
 
 
-    }win;
+    } win;
 
     HWND GetSharedWndHandle() {
       return win.windowHandle;
