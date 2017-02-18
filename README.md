@@ -1,2 +1,2 @@
 # RoonyBin
-srsly idk
+A fantastical rpg set in a world
