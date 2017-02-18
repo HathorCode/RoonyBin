@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Windows.h>
+#include <windowsx.h>
 #include "touchme.hpp"
 #include "log.hpp"
 #include "platform.hpp"
@@ -8,15 +9,24 @@
 
 #include "game\controls.hpp"
 
+
 namespace rb {
+
   struct Window {
     HWND windowHandle;
     WNDCLASSEX windowClass;
     HDC deviceContext;
 
+
+
     /*Tom, this is probably where you will have to handle inputs for touch */
     static LRESULT __stdcall WindowHandleInput(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-      switch(msg) {
+		
+
+		switch(msg) {
+		case WM_TOUCH: {
+			
+		}
         case WM_KEYDOWN: {
           switch(wParam) {
             case 'W':
@@ -111,9 +121,10 @@ namespace rb {
           if(deviceContext == nullptr) {
             log.write("[Windows.hpp] Could not get device context.\n");
           }
+		  RegisterTouchWindow(windowHandle, 0);
+		  
           ShowWindow(windowHandle, SW_SHOWDEFAULT);
           UpdateWindow(windowHandle);
-		  RegisterTouchWindow(windowHandle, 0);
           return true;
         } else {
           log.write("[Windows.hpp] Could not create window.\n");
@@ -144,4 +155,6 @@ namespace rb {
     HWND GetSharedWndHandle() {
       return win.windowHandle;
     }
+
+	
   }

@@ -1,10 +1,26 @@
 #include <Windows.h>
+#include <windowsx.h>
 
 #include "engine\log.hpp"
 #include "engine\opengl.hpp"
 #include "engine\platform.hpp"
 #include "FoxLib\FoxLib.hpp"
 #include "engine\touchme.hpp"
+
+#define MAXPOINTS 10
+
+static int radius = 50;
+struct circle {
+	COLORREF color;
+	int sysID;
+	int pointX;
+	int pointY;
+};
+
+circle circlesArray[MAXPOINTS];
+int touchCount = 0;
+int cycleCount = 0;
+
 
 namespace rb {
   void gameLoop() {
