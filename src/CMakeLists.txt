@@ -53,3 +53,9 @@ foreach(shader ${shaders})
   file(COPY ${shader} DESTINATION "${CMAKE_BINARY_DIR}/shaders")
 endforeach()
 file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/glew/glew32.dll" DESTINATION "${CMAKE_BINARY_DIR}")
+
+#Copies over the res folder stuff
+file(GLOB_RECURSE images RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.png")
+foreach(image ${images})
+  file(COPY ${image} DESTINATION "${CMAKE_BINARY_DIR}/res")
+endforeach()
