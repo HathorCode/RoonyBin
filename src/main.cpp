@@ -7,7 +7,8 @@
 #include "FoxLib\FoxLib.hpp"
 #include "engine\touchme.hpp"
 
-<<<<<<< HEAD
+#include "engine\renderer\texture.hpp"
+
 #define MAXPOINTS 10
 
 static int radius = 50;
@@ -21,10 +22,6 @@ struct circle {
 circle circlesArray[MAXPOINTS];
 int touchCount = 0;
 int cycleCount = 0;
-
-=======
-#include "engine\renderer\texture.hpp"
->>>>>>> e800e27ac11a98b632db0c6f1a4ef7ef648c50b3
 
 namespace rb {
   void gameLoop() {
