@@ -1,7 +1,7 @@
 #pragma once
 
 namespace rb{
-  struct controls {
+  struct Controls {
     bool up,
          down,
          left,
