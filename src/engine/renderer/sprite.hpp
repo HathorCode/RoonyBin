@@ -19,7 +19,7 @@ namespace rb {
     }
 
     void drawSprite(Texture &tex, glm::vec2 pos, glm::vec2 size, GLfloat rotate, glm::vec3 color) {
-      //shader.use();
+      shader.init();
       glm::mat4 model;
 
       // Order of sprite modifications:
