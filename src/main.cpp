@@ -13,10 +13,11 @@
 
 namespace rb {
   void gameLoop() {
+    renderer.init();
     // Handle game time here
     while(true) {
       win.handleInput();
-			renderer.init();
+      renderer.update();
 			// start rendering based on a clocked time
 	  	//int test = (int)texture.loadTexture("lock.png");
 
