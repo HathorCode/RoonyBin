@@ -13,9 +13,11 @@
 #include "engine/renderer/texture.hpp"
 #include "engine/renderer/renderer.hpp"
 
+YSE::sound sound;
 
 namespace rb {
 	void gameLoop() {
+		sound.create("res/black.ogg", NULL, true);
 		game.state = game.GAME_ACTIVE;
 		renderer.init();
 		// Eventually handle game time
