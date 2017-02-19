@@ -205,7 +205,10 @@ namespace rb {
 				RegisterTouchWindow(windowHandle, 0);
 				touch.touchInit(WIDTH, HEIGHT);
 
-				mySound.create("res/black.ogg", &YSE::ChannelMusic(), true, 1.0f, false);
+				mySound.create("res/back.ogg", &YSE::ChannelMusic(), true, 1.0f, false);
+				if (!mySound.isValid()) {
+					log.write("Sound not valid");
+				}
 
 				// The standard size when you create a window includes the header bar and border
 				// This leads to a client area with weird size, which this corrects before displaying the window
