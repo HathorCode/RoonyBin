@@ -16,7 +16,6 @@ namespace rb {
       initRenderData();
     }
 
-
     void drawSprite(Texture &tex, glm::vec2 pos, glm::vec2 size, GLfloat rotate, glm::vec3 color) {
       //shader.use();
       glm::mat4 model;

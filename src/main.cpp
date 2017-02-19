@@ -7,32 +7,34 @@
 #include "FoxLib\FoxLib.hpp"
 #include "engine\touchme.hpp"
 
+#include "game\game.hpp"
+
 #include "engine\renderer\texture.hpp"
 #include "engine\renderer\renderer.hpp"
 
 
 namespace rb {
   void gameLoop() {
+    game.state = game.GAME_ACTIVE;
     renderer.init();
-    // Handle game time here
-    while(true) {
+    // Eventually handle game time
+    while(game.state == game.GAME_ACTIVE) {
       win.handleInput();
       renderer.update();
 			// start rendering based on a clocked time
 	  	//int test = (int)texture.loadTexture("lock.png");
-
     }
   }
 }
 
 int WINAPI WinMain(HINSTANCE paramHInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow) {
-
   using namespace rb;
   rb::log.init();
 
   hInstance = paramHInstance;
   win.registerWindowClass();
 
+  // Create the window
   if(!win.init()) {
     //change default options
 	  if (!win.init()) {
@@ -49,6 +51,7 @@ int WINAPI WinMain(HINSTANCE paramHInstance, HINSTANCE hPrevInstance, LPSTR pCmd
   }
   */
 
+  //initialize the opengl context, and go straight into  the game loop
   gl.init();
   gameLoop();
 
