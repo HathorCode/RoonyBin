@@ -20,6 +20,7 @@ namespace rb {
 		renderer.init();
 		// Eventually handle game time
 		while (game.state == game.GAME_ACTIVE) {
+			YSE::System().update();
 			win.handleInput();
 			renderer.update();
 			// start rendering based on a clocked time

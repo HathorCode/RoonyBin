@@ -31,10 +31,10 @@ elseif(UNIX)
 endif()
 
 #Load libraries (must come after add_executable)
-target_link_libraries(RoonyBin glfw/glfw3)
+#target_link_libraries(RoonyBin glfw/glfw3)
 #target_link_libraries(OpenGL assimp/assimp)
-target_link_libraries(RoonyBin glew/glew32)
-target_link_libraries(RoonyBin glew/glew32s)
+#target_link_libraries(RoonyBin glew/glew32)
+#target_link_libraries(RoonyBin glew/glew32s)
 target_link_libraries(RoonyBin yse/libyse64)
 
 #Fix Visual studio source groups to correspond to the folder they're in
