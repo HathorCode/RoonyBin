@@ -31,19 +31,16 @@ namespace rb {
 		sVertex = glCreateShader(GL_VERTEX_SHADER);
 		glShaderSource(sVertex, 1, &vertexSource, NULL);
 		glCompileShader(sVertex);
-		checkCompileErrors(sVertex, "VERTEX");
 		// Fragment Shader
 		sFragment = glCreateShader(GL_FRAGMENT_SHADER);
 		glShaderSource(sFragment, 1, &fragmentSource, NULL);
 		glCompileShader(sFragment);
-		checkCompileErrors(sFragment, "FRAGMENT");
 		// If geometry shader source code is given, also compile geometry shader
 		// Shader Program
 		shaderID = glCreateProgram();
 		glAttachShader(shaderID, sVertex);
 		glAttachShader(shaderID, sFragment);
 		glLinkProgram(shaderID);
-		checkCompileErrors(shaderID, "PROGRAM");
 		// Delete the shaders as they're linked into our program now and no longer necessery
 		glDeleteShader(sVertex);
 		glDeleteShader(sFragment);
@@ -114,30 +111,5 @@ namespace rb {
 	  int debug = glGetUniformLocation(shaderID, name);
       glUniformMatrix4fv(glGetUniformLocation(shaderID, name), 1, GL_FALSE, glm::value_ptr(matrix));
     }
-
-	void checkCompileErrors(GLuint object, std::string type){
-		GLint success;
-		GLchar infoLog[1024];
-		if (type != "PROGRAM")
-		{
-			glGetShaderiv(object, GL_COMPILE_STATUS, &success);
-			if (!success)
-			{
-				glGetShaderInfoLog(object, 1024, NULL, infoLog);
-				log.write(type.c_str());
-				log.write(infoLog);
-			}
-		}
-		else
-		{
-			glGetProgramiv(object, GL_LINK_STATUS, &success);
-			if (!success)
-			{
-				glGetProgramInfoLog(object, 1024, NULL, infoLog);
-				log.write(type.c_str());
-				log.write(infoLog);
-			}
-		}
-	}
   };
 }

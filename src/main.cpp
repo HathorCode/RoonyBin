@@ -31,6 +31,7 @@ namespace rb {
 
 int WINAPI WinMain(HINSTANCE paramHInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow) {
 	using namespace rb;
+	std::map<std::string, Shader> Shaders;
 	rb::log.init();
 
 	YSE::System().init();

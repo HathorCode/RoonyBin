@@ -36,7 +36,6 @@ endif()
 #target_link_libraries(RoonyBin glew/glew32)
 #target_link_libraries(RoonyBin glew/glew32s)
 target_link_libraries(RoonyBin yse/libyse64)
-target_link_libraries(RoonyBin soil/SOIL)
 
 #Fix Visual studio source groups to correspond to the folder they're in
 foreach(src ${allCodeFiles})

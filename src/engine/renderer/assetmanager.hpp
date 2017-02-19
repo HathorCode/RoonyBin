@@ -9,7 +9,8 @@
 #include <string>
 #include <map>
 
-#include "soil/SOIL.h"
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb/stb_image.h>
 
 namespace rb {
   /*If you abbreviate this, it becomes assman hehehehehehehehe*/
@@ -19,6 +20,7 @@ namespace rb {
 
     // Use this function over the individual shader one
     static Shader loadShader(const char* vertexFileName, const char* fragmentFileName, std::string name) {
+	std::map<std::string, Shader> Shaders;
       Shader shaderToReturn = loadShaderFromFile(vertexFileName, fragmentFileName);
       Shaders[name] = shaderToReturn;
       return shaderToReturn;
@@ -72,14 +74,13 @@ namespace rb {
       }
 
       int width, height;
-	  int comp;
-	  unsigned char* imageData = SOIL_load_image(fileName, &width, &height, &comp, 4);
+      unsigned char* imageData = stbi_load(fileName, &width, &height, 0, 4);
 
-	  if (imageData == '\0') {
+	  if (imageData = nullptr) {
 		  log.write("[AssetManager] Couldn't load image data");
 	  }
       tex.generate(width, height, imageData);
-	  SOIL_free_image_data(imageData); //we've already used this data
+	  stbi_image_free(imageData); //we've already used this data
       return tex;
     }
 
