@@ -25,6 +25,14 @@ PFNGLDELETEVERTEXARRAYSPROC			  glDeleteVertexArrays;
 PFNGLUSEPROGRAMPROC					      glUseProgram;
 PFNGLBINDVERTEXARRAYPROC			    glBindVertexArray;
 PFNGLUNIFORM1IPROC					      glUniform1i;
+
+// Loaded in for shader use
+PFNGLUNIFORM1FPROC					      glUniform1f;
+PFNGLUNIFORM2FPROC					      glUniform2f;
+PFNGLUNIFORM3FPROC					      glUniform3f;
+PFNGLUNIFORM4FPROC					      glUniform4f;
+PFNGLUNIFORMMATRIX4FVPROC				  glUniformMatrix4fv;
+
 PFNGLUNIFORMMATRIX3FVPROC			    glUniformMatrix3fv;
 PFNGLGENBUFFERSPROC					      glGenBuffers;
 PFNGLDELETEBUFFERSPROC				    glDeleteBuffers;
