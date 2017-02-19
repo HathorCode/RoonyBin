@@ -9,19 +9,6 @@
 
 #include "engine\renderer\texture.hpp"
 
-#define MAXPOINTS 10
-
-static int radius = 50;
-struct circle {
-	COLORREF color;
-	int sysID;
-	int pointX;
-	int pointY;
-};
-
-circle circlesArray[MAXPOINTS];
-int touchCount = 0;
-int cycleCount = 0;
 
 namespace rb {
   void gameLoop() {
