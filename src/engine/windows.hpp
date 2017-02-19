@@ -22,6 +22,7 @@ namespace rb {
 
 
     /*Tom, this is probably where you will have to handle inputs for touch */
+	/*>>Tom successfully handled inputs for touch here probably*/
     static LRESULT __stdcall WindowHandleInput(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 		
 		// For double buffering
@@ -33,7 +34,6 @@ namespace rb {
 		int index;
 
 		// For dealing with WM_TOUCH
-		int i, x, y;
 		UINT cInputs;
 		PTOUCHINPUT pInputs;
 		POINT ptInput;
@@ -47,9 +47,9 @@ namespace rb {
 			cycleCount++;
 			if (pInputs) {
 				if (GetTouchInputInfo((HTOUCHINPUT)lParam, cInputs, pInputs, sizeof(TOUCHINPUT))) {
-					for (int i = 0; i < static_cast<int>(cInputs); i++) {
+					for (int xi = 0; xi < static_cast<int>(cInputs); xi++) {
 
-						TOUCHINPUT ti = pInputs[i];
+						TOUCHINPUT ti = pInputs[xi];
 
 						if (ti.dwID != 0) {
 							// Do something with your touch input handle
@@ -57,10 +57,13 @@ namespace rb {
 							ptInput.y = TOUCH_COORD_TO_PIXEL(ti.y);
 							ScreenToClient(hWnd, &ptInput);
 
+							//passes coordinates to the handler
+							touch.handleJoystick(ptInput.x, ptInput.y);
+
 							if (ti.dwFlags & TOUCHEVENTF_UP) {
 
 								//ReleaseContactIndex(ti.dwID);
-								touch.ReleaseCircleIndex(ti.dwID);
+								touch.releaseTouch(ti.dwID);
 
 								touchCount++;
 							} else {
@@ -196,7 +199,6 @@ namespace rb {
 		  
 		  for (int i = 0; i < MAXPOINTS; i++) {
 			  circlesArray[i].sysID = -1;
-			  circlesArray[i].color = RGB(0, 0, 0);
 			  circlesArray[i].pointX = -1;
 			  circlesArray[i].pointY = -1;
 		  }
