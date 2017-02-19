@@ -8,6 +8,9 @@
 #include <string>
 #include <map>
 
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb/stb_image.h>
+
 namespace rb {
   /*If you abbreviate this, it becomes assman hehehehehehehehe*/
   struct AssetManager {
@@ -38,11 +41,12 @@ namespace rb {
       }
 
       unsigned int width, height;
-      unsigned char* imageData = SOIL_load_image(fileName, (int*)&width, (int*)&height, 0,
-      tex.imageFormat = GL_RGBA ? SOIL_LOAD_RGBA : SOIL_LOAD_RGB);
+	  // you like that shit? ;)
+      unsigned char* imageData = stbi_load(fileName, (int*)&width, (int*)&height, 0,
+		  tex.imageFormat = GL_RGBA ? STBI_rgb_alpha : STBI_rgb);
 
       tex.generate(width, height, imageData);
-      SOIL_free_image_data(imageData); //we've already used this data
+	  stbi_image_free(imageData); //we've already used this data
       return tex;
     }
 

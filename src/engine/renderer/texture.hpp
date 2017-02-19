@@ -1,7 +1,6 @@
 /*SOIL should only ever touch this file since its directly related to textures*/
 #pragma once
 
-#include "soil/SOIL.h"
 #include "engine/opengl.hpp"
 
 namespace rb {

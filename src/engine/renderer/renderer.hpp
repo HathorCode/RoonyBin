@@ -29,9 +29,9 @@ namespace rb {
       manager.loadShader("shaders/default.vs", "shaders/sprite.fs", "sprite");
 
       glm::mat4 projection = glm::ortho(0.0f, (GLfloat)win.WIDTH, (GLfloat)win.HEIGHT,
-      0.0f, -1.0f, 1.0f);
-      manager.Shaders["sprite"].init().setInteger("image", 0, false);
-      manager.Shaders["sprite"].setMatrix4("projection", projection, false);
+								0.0f, -1.0f, 1.0f);
+      manager.Shaders["sprite"].init().setInteger("image", 0);
+      manager.Shaders["sprite"].setMatrix4("projection", projection);
 
       //load textures, probably doesn't work on my computer
       manager.loadTexture("res/1.png", GL_TRUE, "grass");
