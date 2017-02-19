@@ -10,6 +10,7 @@ struct Renderer {
   Shader mainShader;
 
   void update() {
+	  glClear(GL_COLOR_BUFFER_BIT);
     //simply draws triangle for now
   }
   void init() {

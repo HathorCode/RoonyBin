@@ -57,12 +57,6 @@ namespace rb {
 		glBindTexture(GL_TEXTURE_2D, textureID);
     }
 
-    /*Loads a texture, GLuint returned is the texture ID*/
-    char* loadImage(const char* fileName) {
-		return "  ";
-    }
-
-
 
   };
 
