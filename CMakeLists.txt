@@ -56,8 +56,7 @@ endforeach()
 #file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/glew/glew32.dll" DESTINATION "${CMAKE_BINARY_DIR}")
 
 #Copies over the res folder stuff
-file(GLOB_RECURSE images RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}res/" "*.png" "*.lvl")
-file(GLOB_RECURSE images RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}res/" "*.png" "*.ogg")
+file(GLOB_RECURSE images RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}res/" "*.png" "*.lvl" "*.ogg")
 foreach(image ${images})
   file(COPY ${image} DESTINATION "${CMAKE_BINARY_DIR}/res")
 endforeach()
