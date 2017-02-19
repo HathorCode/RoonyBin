@@ -1,6 +1,7 @@
 #include <Windows.h>
 #include <windowsx.h>
 
+#include "yse/yse.hpp"
 #include "engine/log.hpp"
 #include "engine/opengl.hpp"
 #include "engine/platform.hpp"
@@ -14,48 +15,49 @@
 
 
 namespace rb {
-  void gameLoop() {
-    game.state = game.GAME_ACTIVE;
-    renderer.init();
-    // Eventually handle game time
-    while(game.state == game.GAME_ACTIVE) {
-      win.handleInput();
-      renderer.update();
+	void gameLoop() {
+		game.state = game.GAME_ACTIVE;
+		renderer.init();
+		// Eventually handle game time
+		while (game.state == game.GAME_ACTIVE) {
+			win.handleInput();
+			renderer.update();
 			// start rendering based on a clocked time
-	  	//int test = (int)texture.loadTexture("lock.png");
-    }
-  }
+		//int test = (int)texture.loadTexture("lock.png");
+		}
+	}
 }
 
 int WINAPI WinMain(HINSTANCE paramHInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow) {
-  using namespace rb;
-  rb::log.init();
+	using namespace rb;
+	rb::log.init();
 
-  hInstance = paramHInstance;
-  win.registerWindowClass();
+	YSE::System().init();
+	hInstance = paramHInstance;
+	win.registerWindowClass();
 
-  // Create the window
-  if(!win.init()) {
-    //change default options
-	  if (!win.init()) {
-      rb::log.write("[Main.cpp] Failed to create basic window.\n");
-      ExitProgram();
-    }
-  }
+	// Create the window
+	if (!win.init()) {
+		//change default options
+		if (!win.init()) {
+			rb::log.write("[Main.cpp] Failed to create basic window.\n");
+			ExitProgram();
+		}
+	}
 
-  /* //Enable this code to check for multitouch support
-  if (!touch.touchCheck()) {
-	  //check for touch compatibility
-	  rb::log.write("[Main.cpp] MultiTouch not supported");
-	  ExitProgram();
-  }
-  */
+	/* //Enable this code to check for multitouch support
+	if (!touch.touchCheck()) {
+		//check for touch compatibility
+		rb::log.write("[Main.cpp] MultiTouch not supported");
+		ExitProgram();
+	}
+	*/
 
-  //initialize the opengl context, and go straight into  the game loop
-  gl.init();
-  gameLoop();
+	//initialize the opengl context, and go straight into  the game loop
+	gl.init();
+	gameLoop();
 
-  //Should never be called
-  ExitProgram();
-  return 0;
+	//Should never be called
+	ExitProgram();
+	return 0;
 }
