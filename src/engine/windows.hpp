@@ -18,8 +18,8 @@ namespace rb {
     HWND windowHandle;
     WNDCLASSEX windowClass;
     HDC deviceContext;
-    int WIDTH   = 1080;
-    int HEIGHT  = 720;
+    const int WIDTH   = 1080;
+    const int HEIGHT  = 720;
 
     static LRESULT __stdcall WindowHandleInput(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
@@ -58,8 +58,9 @@ namespace rb {
 							touch.handleJoystick(ptInput.x, ptInput.y);
 
 							if (ti.dwFlags & TOUCHEVENTF_UP) {
+								circlesArray[index].pointX = ptInput.x;
+								circlesArray[index].pointY = ptInput.y;
 
-								//ReleaseContactIndex(ti.dwID);
 								touch.releaseTouch(ti.dwID);
 
 								touchCount++;
@@ -193,12 +194,7 @@ namespace rb {
             log.write("[Windows.hpp] Could not get device context.\n");
           }
 		  RegisterTouchWindow(windowHandle, 0);
-
-		  for (int i = 0; i < MAXPOINTS; i++) {
-			  circlesArray[i].sysID = -1;
-			  circlesArray[i].pointX = -1;
-			  circlesArray[i].pointY = -1;
-		  }
+		  touch.touchInit(WIDTH, HEIGHT);
 
 		  // The standard size when you create a window includes the header bar and border
 		  // This leads to a client area with weird size, which this corrects before displaying the window

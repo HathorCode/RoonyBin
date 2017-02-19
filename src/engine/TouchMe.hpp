@@ -20,6 +20,10 @@ struct circle {
 circle circlesArray[MAXPOINTS];
 int touchCount = 0;
 int cycleCount = 0;
+int WIDTH;
+int HEIGHT;
+int joyX;
+int joyY;
 
 namespace rb {
 
@@ -44,12 +48,26 @@ namespace rb {
 		void releaseTouch(int dwID) {
 			for (int i = 0; i < MAXPOINTS; i++) {
 				if (circlesArray[i].sysID == dwID) {
+					if (((joyY - 175) < circlesArray[i].pointY < (joyY + 175)) && ((joyX - 175) < circlesArray[i].pointX < (joyX + 175))) {
+						stopMoving();
+					}
 					circlesArray[i].sysID = -1;
 					circlesArray[i].pointX = -1;
 					circlesArray[i].pointY = -1;
 				}
 			}
-			stopMoving();
+		}
+
+		void touchInit(int wid, int hei) {
+			for (int i = 0; i < MAXPOINTS; i++) {
+				circlesArray[i].sysID = -1;
+				circlesArray[i].pointX = -1;
+				circlesArray[i].pointY = -1;
+			}
+			WIDTH = wid;
+			HEIGHT = hei;
+			joyX = WIDTH / 4;
+			joyY = 2 * (HEIGHT / 3);
 		}
 
 		bool touchCheck() {
@@ -61,21 +79,20 @@ namespace rb {
 		}
 
 		void handleJoystick(long x, long y) {
-			//TODO: put joystick center coordinates here
-			int xCoord = 32;
-			int yCoord = 32;
-			
-			bool up = y < yCoord;
-			bool down = y > yCoord;
-			bool left = x < xCoord;
-			bool right = x > xCoord;
+			//might need to change values based on joystick size
+			bool up = (joyY - 150) < y < joyY;
+			bool down = (joyY + 150) > y > joyY;
+			bool left = (joyX - 150) < x < joyX;
+			bool right = (joyX + 150) > x > joyX;
 			if (up) {
 				gameControls.up = true;
+				log.write("In Joystick range Up \n");
 			} else {
 				gameControls.up = false;
 			}
 			if (down) {
 				gameControls.down = true;
+				log.write("In Joystick range Down \n");
 			} else {
 				gameControls.down = false;
 			}
