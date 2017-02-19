@@ -34,8 +34,8 @@ namespace rb {
       // final scaling
       model = glm::scale(model, glm::vec3(size, 1.0f));
 
-	  spriteShader.setMatrix4("model", model, false);
-	  spriteShader.setVector3f("spriteColor", color, false);
+	  spriteShader.setMatrix4("model", model);
+	  spriteShader.setVector3f("spriteColor", color);
 
       glActiveTexture(GL_TEXTURE0);
       tex.bind();

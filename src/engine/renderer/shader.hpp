@@ -19,7 +19,7 @@ namespace rb {
     GLuint shaderID;
 
     /* Activates the previously linked shader program */
-    Shader init() {
+    Shader& init() {
       glUseProgram(shaderID);
       return *this; //this sucks ik ik
     }

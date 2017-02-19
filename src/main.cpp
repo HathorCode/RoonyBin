@@ -21,8 +21,8 @@ namespace rb {
 		// Eventually handle game time
 		while (game.state == game.GAME_ACTIVE) {
 			YSE::System().update();
-			win.handleInput();
 			renderer.update();
+			win.handleInput();
 			// start rendering based on a clocked time
 		//int test = (int)texture.loadTexture("lock.png");
 		}
@@ -31,6 +31,7 @@ namespace rb {
 
 int WINAPI WinMain(HINSTANCE paramHInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow) {
 	using namespace rb;
+	std::map<std::string, Shader> Shaders;
 	rb::log.init();
 
 	YSE::System().init();

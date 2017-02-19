@@ -32,6 +32,7 @@ PFNGLUNIFORM2FPROC					      glUniform2f;
 PFNGLUNIFORM3FPROC					      glUniform3f;
 PFNGLUNIFORM4FPROC					      glUniform4f;
 PFNGLUNIFORMMATRIX4FVPROC				  glUniformMatrix4fv;
+//PFNGLTEXIMAGE2DPROC               glTexImage2D;
 
 PFNGLUNIFORMMATRIX3FVPROC			    glUniformMatrix3fv;
 PFNGLGENBUFFERSPROC					      glGenBuffers;

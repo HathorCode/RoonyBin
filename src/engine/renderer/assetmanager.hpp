@@ -15,17 +15,18 @@
 namespace rb {
   /*If you abbreviate this, it becomes assman hehehehehehehehe*/
   struct AssetManager {
-    std::map<std::string, Texture> Textures;
-    std::map<std::string, Shader> Shaders;
+    static std::map<std::string, Texture> Textures;
+    static std::map<std::string, Shader> Shaders;
 
     // Use this function over the individual shader one
-    Shader loadShader(const char* vertexFileName, const char* fragmentFileName, std::string name) {
+    static Shader loadShader(const char* vertexFileName, const char* fragmentFileName, std::string name) {
+	std::map<std::string, Shader> Shaders;
       Shader shaderToReturn = loadShaderFromFile(vertexFileName, fragmentFileName);
       Shaders[name] = shaderToReturn;
       return shaderToReturn;
     }
 
-	Shader loadShaderFromFile(const GLchar *vShaderFile, const GLchar *fShaderFile) {
+	static Shader loadShaderFromFile(const GLchar *vShaderFile, const GLchar *fShaderFile) {
 		// 1. Retrieve the vertex/fragment source code from filePath
 		std::string vertexCode;
 		std::string fragmentCode;
@@ -58,30 +59,32 @@ namespace rb {
 
     // finally all of this abstraction leads to smthing
     //also always use loadTexture and NOT loadTextureFromFile
-    Texture loadTexture(const char* fileName, bool alpha, std::string name) {
+	static Texture loadTexture(const char* fileName, bool alpha, std::string name) {
       Textures[name] = loadTextureFromFile(fileName, alpha);
       return Textures[name];
     }
 
-    Texture loadTextureFromFile(const char* fileName, bool alpha) {
+	static Texture loadTextureFromFile(const char* fileName, bool alpha = true) {
+
       Texture tex;
       if(alpha) {
         // we defaulted to RGB, so we change it here otherwise
-        tex.textureFormat = GL_RGBA;
-        tex.imageFormat = GL_RGBA;
+        tex.textureFormat = GL_RGBA8;
+        tex.imageFormat = GL_RGBA8;
       }
 
-      unsigned int width, height;
-	  // you like that shit? ;)
-      unsigned char* imageData = stbi_load(fileName, (int*)&width, (int*)&height, 0,
-		  tex.imageFormat = GL_RGBA ? STBI_rgb_alpha : STBI_rgb);
+      int width, height;
+      unsigned char* imageData = stbi_load(fileName, &width, &height, 0, 4);
 
+	  if (imageData = nullptr) {
+		  log.write("[AssetManager] Couldn't load image data");
+	  }
       tex.generate(width, height, imageData);
 	  stbi_image_free(imageData); //we've already used this data
       return tex;
     }
 
-    void clear() {
+	static void clear() {
       for(auto iterateShaders : Shaders) {
         glDeleteProgram(iterateShaders.second.shaderID);
       }
@@ -91,5 +94,7 @@ namespace rb {
       }
     }
 
-  }manager;
+  };
+  std::map<std::string, Texture> AssetManager::Textures;
+  std::map<std::string, Shader> AssetManager::Shaders;
 }
