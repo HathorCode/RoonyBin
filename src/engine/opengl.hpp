@@ -194,6 +194,7 @@ namespace rb {
 			if (!(glUniform3f = (PFNGLUNIFORM3FPROC)wglGetProcAddress("glUniform3f"))){ return false; }
 			if (!(glUniform4f = (PFNGLUNIFORM4FPROC)wglGetProcAddress("glUniform4f"))){ return false; }
 			if (!(glUniformMatrix4fv = (PFNGLUNIFORMMATRIX4FVPROC)wglGetProcAddress("glUniformMatrix4fv"))){ return false; }
+			if (!(glGenerateMipmap = (PFNGLGENERATEMIPMAPPROC)wglGetProcAddress("glGenerateMipmap"))){ return false; }
 			//if (!(glTexImage2D = (PFNGLTEXIMAGE2DPROC)wglGetProcAddress("glTexImage22D"))){ return false; }
 
 

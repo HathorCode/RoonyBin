@@ -32,6 +32,7 @@ PFNGLUNIFORM2FPROC					      glUniform2f;
 PFNGLUNIFORM3FPROC					      glUniform3f;
 PFNGLUNIFORM4FPROC					      glUniform4f;
 PFNGLUNIFORMMATRIX4FVPROC				  glUniformMatrix4fv;
+PFNGLGENERATEMIPMAPPROC					glGenerateMipmap;
 //PFNGLTEXIMAGE2DPROC               glTexImage2D;
 
 PFNGLUNIFORMMATRIX3FVPROC			    glUniformMatrix3fv;
