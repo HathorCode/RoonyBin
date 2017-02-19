@@ -9,7 +9,7 @@
 #include <tchar.h>
 #include <stdio.h>
 
-#include "game/controls.hpp"
+#include "../game/controls.hpp"
 
 
 namespace rb {
@@ -58,6 +58,7 @@ namespace rb {
 							touch.handleJoystick(ptInput.x, ptInput.y);
 
 							if (ti.dwFlags & TOUCHEVENTF_UP) {
+								index = touch.GetCircleIndex(ti.dwID);
 								circlesArray[index].pointX = ptInput.x;
 								circlesArray[index].pointY = ptInput.y;
 

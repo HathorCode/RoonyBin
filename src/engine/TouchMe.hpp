@@ -6,7 +6,7 @@
 #include <windowsx.h>
 #include "FoxLib/FoxLib.hpp"
 #include "windows.hpp"
-#include "game/controls.hpp"
+#include "../game/controls.hpp"
 
 #define MAXPOINTS 10
 
@@ -80,28 +80,28 @@ namespace rb {
 
 		void handleJoystick(long x, long y) {
 			//might need to change values based on joystick size
-			bool up = (joyY - 150) < y < joyY;
-			bool down = (joyY + 150) > y > joyY;
-			bool left = (joyX - 150) < x < joyX;
-			bool right = (joyX + 150) > x > joyX;
-			if (up) {
+			bool up = ((joyY - 150) < y) && (y < joyY);
+			bool down = ((joyY + 150) > y) && (y > joyY);
+			bool left = ((joyX - 150) < x) && (x < joyX);
+			bool right = ((joyX + 150) > x) && (x > joyX);
+			if (up && (left || right)) {
 				gameControls.up = true;
 				log.write("In Joystick range Up \n");
 			} else {
 				gameControls.up = false;
 			}
-			if (down) {
+			if (down && (left || right)) {
 				gameControls.down = true;
 				log.write("In Joystick range Down \n");
 			} else {
 				gameControls.down = false;
 			}
-			if (left) {
+			if (left && (up || down)) {
 				gameControls.left = true;
 			} else {
 				gameControls.left = false;
 			}
-			if (right) {
+			if (right && (up || down)) {
 				gameControls.right = true;
 			} else {
 				gameControls.right = false;
