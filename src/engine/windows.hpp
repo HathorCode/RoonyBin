@@ -5,11 +5,11 @@
 #include "touchme.hpp"
 #include "log.hpp"
 #include "platform.hpp"
-#include "FoxLib\FoxLib.hpp"
+#include "FoxLib/FoxLib.hpp"
 #include <tchar.h>
 #include <stdio.h>
 
-#include "game\controls.hpp"
+#include "game/controls.hpp"
 
 
 namespace rb {

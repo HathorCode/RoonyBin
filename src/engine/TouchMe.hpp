@@ -4,9 +4,9 @@
 #include "platform.hpp"
 #include <Windows.h>
 #include <windowsx.h>
-#include "FoxLib\FoxLib.hpp"
+#include "FoxLib/FoxLib.hpp"
 #include "windows.hpp"
-#include "game\controls.hpp"
+#include "game/controls.hpp"
 
 #define MAXPOINTS 10
 

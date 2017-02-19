@@ -3,6 +3,7 @@
 //#include "renderer.hpp"
 #include "shader.hpp"
 #include "texture.hpp"
+#include "../opengl.hpp"
 
 #include <string>
 #include <map>

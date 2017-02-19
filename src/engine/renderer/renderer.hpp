@@ -1,8 +1,8 @@
 #pragma once
 
-#include "engine\log.hpp"
-#include "engine\opengl.hpp"
-#include "engine\renderer\shader.hpp"
+#include "engine/log.hpp"
+#include "engine/opengl.hpp"
+#include "engine/renderer/shader.hpp"
 
 namespace rb {
   /*Srsly wtf am I gonna doooooo */

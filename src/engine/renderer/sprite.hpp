@@ -4,7 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "..\opengl.hpp"
+#include "../opengl.hpp"
 #include "texture.hpp"
 #include "shader.hpp"
 

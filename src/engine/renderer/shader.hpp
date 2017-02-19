@@ -1,13 +1,13 @@
 #pragma once
 
-#include "engine\log.hpp"
-#include "engine\opengl.hpp"
-#include "engine\io.hpp"
+#include "engine/log.hpp"
+#include "engine/opengl.hpp"
+#include "engine/io.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "FoxLib\FoxLib.hpp"
+#include "FoxLib/FoxLib.hpp"
 
 namespace rb {
   /* Proper shader usage: load the shaders, and then init them, which activates them */

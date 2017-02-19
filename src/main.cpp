@@ -1,16 +1,16 @@
 #include <Windows.h>
 #include <windowsx.h>
 
-#include "engine\log.hpp"
-#include "engine\opengl.hpp"
-#include "engine\platform.hpp"
-#include "FoxLib\FoxLib.hpp"
-#include "engine\touchme.hpp"
+#include "engine/log.hpp"
+#include "engine/opengl.hpp"
+#include "engine/platform.hpp"
+#include "FoxLib/FoxLib.hpp"
+#include "engine/touchme.hpp"
 
-#include "game\game.hpp"
+#include "game/game.hpp"
 
-#include "engine\renderer\texture.hpp"
-#include "engine\renderer\renderer.hpp"
+#include "engine/renderer/texture.hpp"
+#include "engine/renderer/renderer.hpp"
 
 
 namespace rb {
