@@ -1,7 +1,7 @@
 /*SOIL should only ever touch this file since its directly related to textures*/
 #pragma once
 
-#include "engine/opengl.hpp"
+#include "../opengl.hpp"
 
 namespace rb {
   struct Texture {

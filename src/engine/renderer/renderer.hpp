@@ -1,7 +1,7 @@
 #pragma once
 
-#include "engine/log.hpp"
-#include "engine/opengl.hpp"
+#include "../log.hpp"
+#include "../opengl.hpp"
 #include "shader.hpp"
 #include "sprite.hpp"
 #include "assetmanager.hpp"

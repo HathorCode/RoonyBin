@@ -5,8 +5,8 @@
 #include <fstream>
 #include <vector>
 
-#include "engine/log.hpp"
-#include "engine/opengl.hpp"
+#include "../log.hpp"
+#include "../opengl.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
