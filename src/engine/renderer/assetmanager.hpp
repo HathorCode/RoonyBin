@@ -11,8 +11,22 @@ namespace rb {
   /*If you abbreviate this, it becomes assman hehehehehehehehe*/
   struct AssetManager {
     std::map<std::string, Texture> Textures;
-    //eventually I want to manage shaders here too, but thats later
-    //std::map<std::string, Shader> Shaders;
+    std::map<std::string, Shader> Shaders;
+
+    // Use this function over the individual shader one
+    Shader loadShader(const char* vertexFileName, const char* fragmentFileName, std::string name) {
+      Shader shaderToReturn;
+      shaderToReturn.loadShaders(vertexFileName, fragmentFileName);
+      Shaders[name] = shaderToReturn;
+      return shaderToReturn;
+    }
+
+    // finally all of this abstraction leads to smthing
+    //also always use loadTexture and NOT loadTextureFromFile
+    Texture loadTexture(const char* fileName, bool alpha, std::string name) {
+      Textures[name] = loadTextureFromFile(fileName, alpha);
+      return Textures[name];
+    }
 
     Texture loadTextureFromFile(const char* fileName, bool alpha) {
       Texture tex;
@@ -31,24 +45,15 @@ namespace rb {
       return tex;
     }
 
-    // finally all of this abstraction leads to smthing
-    //also always use loadTexture and NOT loadTextureFromFile
-    Texture loadTexture(const char* fileName, bool alpha, std::string name) {
-      Textures[name] = loadTextureFromFile(fileName, alpha);
-      return Textures[name];
-    }
-
     void clear() {
-      //clear shaders too when i use them here
-      /*
       for(auto iterateShaders : Shaders) {
         glDeleteProgram(iterateShaders.second.shaderID);
       }
-      */
+
       for(auto iterate : Textures) {
         glDeleteTextures(1, &iterate.second.textureID);
       }
     }
 
-  }
+  };
 }
