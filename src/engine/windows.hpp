@@ -56,7 +56,6 @@ namespace rb {
 							ptInput.x = TOUCH_COORD_TO_PIXEL(ti.x);
 							ptInput.y = TOUCH_COORD_TO_PIXEL(ti.y);
 							ScreenToClient(hWnd, &ptInput);
-							log.write("[windows.hpp] touch input found at x=" + (int)ptInput.x);
 
 							if (ti.dwFlags & TOUCHEVENTF_UP) {
 
