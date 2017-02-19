@@ -76,5 +76,5 @@ namespace rb {
       glBindVertexArray(0);
     }
 
-  }
+  };
 }
