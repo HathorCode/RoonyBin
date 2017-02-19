@@ -54,7 +54,7 @@ namespace rb {
 
 
     void bind() {
-		glBindTexture(GL_TEXTURE_2D, textureID);
+		  glBindTexture(GL_TEXTURE_2D, textureID);
     }
 
 

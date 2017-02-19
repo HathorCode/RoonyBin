@@ -1,7 +1,7 @@
 #pragma once
 
 //#include "renderer.hpp"
-#include "shaders.hpp"
+#include "shader.hpp"
 #include "texture.hpp"
 
 #include <string>
