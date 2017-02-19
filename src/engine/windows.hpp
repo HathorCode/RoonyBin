@@ -56,6 +56,7 @@ namespace rb {
 							ptInput.x = TOUCH_COORD_TO_PIXEL(ti.x);
 							ptInput.y = TOUCH_COORD_TO_PIXEL(ti.y);
 							ScreenToClient(hWnd, &ptInput);
+							log.write("[windows.hpp] touch input found at x=" + (int)ptInput.x);
 
 							if (ti.dwFlags & TOUCHEVENTF_UP) {
 
@@ -101,85 +102,6 @@ namespace rb {
 				// Handle the error here
 			}
 			InvalidateRect(hWnd, NULL, FALSE);
-			break;
-		}
-
-		case WM_PAINT: {
-			PAINTSTRUCT ps;
-			HDC hdc = BeginPaint(hWnd, &ps);
-			// TODO: Add any drawing code here...
-
-			RECT client;
-			GetClientRect(hWnd, &client);
-
-			// start double buffering
-			if (!memDC) {
-				memDC = CreateCompatibleDC(hdc);
-			}
-			hMemBmp = CreateCompatibleBitmap(hdc, client.right, client.bottom);
-			hOldBmp = (HBITMAP)SelectObject(memDC, hMemBmp);
-
-			//This conditional provides a convenient block
-			//within which backgroundBrush can be created and destroyed
-			if (memDC) {
-
-				//A brush to create background is generated once
-				//and destroyed once every time this function is called
-				HBRUSH backgroundBrush = CreateSolidBrush(RGB(0, 0, 0));
-
-				FillRect(memDC, &client, backgroundBrush);
-
-				//Draw Touched Points
-				for (i = 0; i < MAXPOINTS; i++) {
-
-
-					//I added this block to monitor the touch point IDs on screen
-					TCHAR buffer[180];
-					_stprintf_s(buffer, 180, _T(
-						"cc %d tc %d idl: %d %d %d %d %d %d %d %d %d %d                                                                       "),
-						cycleCount, touchCount,
-						circlesArray[0].sysID,
-						circlesArray[1].sysID,
-						circlesArray[2].sysID,
-						circlesArray[3].sysID,
-						circlesArray[4].sysID,
-						circlesArray[5].sysID,
-						circlesArray[6].sysID,
-						circlesArray[7].sysID,
-						circlesArray[8].sysID,
-						circlesArray[9].sysID
-					);
-					RECT rect = { 0,0,800,20 };
-					DrawText(memDC, buffer, 100, (LPRECT)&rect, DT_TOP);
-
-					HBRUSH circleBrush = CreateSolidBrush(circlesArray[i].color);
-					SelectObject(memDC, circleBrush);
-
-					x = circlesArray[i].pointX;
-					y = circlesArray[i].pointY;
-
-					if (x >0 && y>0) {
-						Ellipse(memDC, x - radius, y - radius, x + radius, y + radius);
-					}
-					ReleaseDC(hWnd, memDC);
-					DeleteObject(circleBrush);
-				}
-
-				BitBlt(hdc, 0, 0, client.right, client.bottom, memDC, 0, 0, SRCCOPY);
-				DeleteObject(backgroundBrush);
-			}
-
-			EndPaint(hWnd, &ps);
-
-			ReleaseDC(hWnd, hdc);
-			DeleteObject(hMemBmp);
-			DeleteObject(hOldBmp);
-			break;
-		}
-
-		case WM_DESTROY: {
-			DeleteDC(memDC);
-			PostQuitMessage(0);
 			break;
 		}
 
