@@ -126,6 +126,7 @@ namespace rb {
 					gameControls.tilde = true;
 					break;
 				}
+				break;
 			}
 
 			case WM_KEYUP: {
@@ -146,6 +147,7 @@ namespace rb {
 					gameControls.tilde = false;
 					break;
 				}
+				break;
 			}
 
 			case WM_CLOSE: {
