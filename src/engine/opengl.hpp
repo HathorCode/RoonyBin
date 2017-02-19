@@ -186,6 +186,16 @@ namespace rb {
 			if(!(glUseProgram=(PFNGLUSEPROGRAMPROC)wglGetProcAddress("glUseProgram"))){return false;}
 			if(!(glBindVertexArray=(PFNGLBINDVERTEXARRAYPROC)wglGetProcAddress("glBindVertexArray"))){return false;}
 			if(!(glUniform1i=(PFNGLUNIFORM1IPROC)wglGetProcAddress("glUniform1i"))){return false;}
+
+
+			// more custom loaded gl proc pointers
+			if (!(glUniform1f = (PFNGLUNIFORM1FPROC)wglGetProcAddress("glUniform1f"))){ return false; }
+			if (!(glUniform2f = (PFNGLUNIFORM2FPROC)wglGetProcAddress("glUniform2f"))){ return false; }
+			if (!(glUniform3f = (PFNGLUNIFORM3FPROC)wglGetProcAddress("glUniform3f"))){ return false; }
+			if (!(glUniform4f = (PFNGLUNIFORM4FPROC)wglGetProcAddress("glUniform4f"))){ return false; }
+			if (!(glUniformMatrix4fv = (PFNGLUNIFORMMATRIX4FVPROC)wglGetProcAddress("glUniformMatrix4fv"))){ return false; }
+
+
 			if(!(glUniformMatrix3fv=(PFNGLUNIFORMMATRIX3FVPROC)wglGetProcAddress("glUniformMatrix3fv"))){return false;}
 			if(!(glGenBuffers=(PFNGLGENBUFFERSPROC)wglGetProcAddress("glGenBuffers"))){return false;}
 			if(!(glDeleteBuffers=(PFNGLDELETEBUFFERSPROC)wglGetProcAddress("glDeleteBuffers"))){return false;}

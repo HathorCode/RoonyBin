@@ -35,7 +35,7 @@ endif()
 #target_link_libraries(OpenGL assimp/assimp)
 #target_link_libraries(RoonyBin glew/glew32)
 #target_link_libraries(RoonyBin glew/glew32s)
-#target_link_libraries(RoonyBin soil/SOIL)
+target_link_libraries(RoonyBin yse/libyse64)
 
 #Fix Visual studio source groups to correspond to the folder they're in
 foreach(src ${allCodeFiles})
@@ -56,7 +56,11 @@ endforeach()
 #file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/glew/glew32.dll" DESTINATION "${CMAKE_BINARY_DIR}")
 
 #Copies over the res folder stuff
+<<<<<<< HEAD
 file(GLOB_RECURSE images RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}res/" "*.png" "*.lvl")
+=======
+file(GLOB_RECURSE images RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}res/" "*.png" "*.ogg")
+>>>>>>> 9d3ed9d2ed92b829197d499ea1815e0698274171
 foreach(image ${images})
   file(COPY ${image} DESTINATION "${CMAKE_BINARY_DIR}/res")
 endforeach()

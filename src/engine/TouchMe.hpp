@@ -48,7 +48,7 @@ namespace rb {
 		void releaseTouch(int dwID) {
 			for (int i = 0; i < MAXPOINTS; i++) {
 				if (circlesArray[i].sysID == dwID) {
-					if (((joyY - 175) < circlesArray[i].pointY < (joyY + 175)) && ((joyX - 175) < circlesArray[i].pointX < (joyX + 175))) {
+					if ((((joyY - 175) < circlesArray[i].pointY) && (circlesArray[i].pointY < (joyY + 175))) && (((joyX - 175) < circlesArray[i].pointX) && (circlesArray[i].pointX < (joyX + 175)))) {
 						stopMoving();
 					}
 					circlesArray[i].sysID = -1;
@@ -92,7 +92,6 @@ namespace rb {
 			}
 			if (down && (left || right)) {
 				gameControls.down = true;
-				log.write("In Joystick range Down \n");
 			} else {
 				gameControls.down = false;
 			}

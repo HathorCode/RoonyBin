@@ -10,16 +10,16 @@
 
 namespace rb {
   struct Sprite {
-    Shader shader;
+    Shader spriteShader;
     GLuint quadVAO;
 
     void init(Shader &shaderParam) {
-      shader = shaderParam;
+	  spriteShader = shaderParam;
       initRenderData();
     }
 
     void drawSprite(Texture &tex, glm::vec2 pos, glm::vec2 size, GLfloat rotate, glm::vec3 color) {
-      shader.init();
+	  spriteShader.init();
       glm::mat4 model;
 
       // Order of sprite modifications:
@@ -34,8 +34,8 @@ namespace rb {
       // final scaling
       model = glm::scale(model, glm::vec3(size, 1.0f));
 
-      shader.setMatrix4("model", model, false);
-      shader.setVector3f("spriteColor", color, false);
+	  spriteShader.setMatrix4("model", model, false);
+	  spriteShader.setVector3f("spriteColor", color, false);
 
       glActiveTexture(GL_TEXTURE0);
       tex.bind();

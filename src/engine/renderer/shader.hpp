@@ -1,8 +1,12 @@
 #pragma once
 
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <vector>
+
 #include "engine/log.hpp"
 #include "engine/opengl.hpp"
-#include "engine/io.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -21,45 +25,25 @@ namespace rb {
     }
 
     /* Loads a vertex and fragment shader, and compiles them into a shader program */
-    GLuint loadShaders(const char* vertexFileName, const char* fragmentFileName) {
-      GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-
-      char* vertexShaderSource = io.loadFromFile(vertexFileName);
-      glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
-      glCompileShader(vertexShader);
-
-      // Error checking can be changed to get length of error string
-      GLint success;
-      GLchar errorLog[512];
-      glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-      if(!success) {
-        glGetShaderInfoLog(vertexShader, 512, nullptr, errorLog);
-        log.write(errorLog);
-        log.write("\n");
-      }
-
-      GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-      char* fragmentShaderSource = io.loadFromFile(vertexFileName);
-      glShaderSource(fragmentShader, 1, &fragmentShaderSource, nullptr);
-      glCompileShader(fragmentShader);
-
-      // Links the two Shaders
-      shaderID = glCreateProgram();
-      glAttachShader(shaderID, vertexShader);
-      glAttachShader(shaderID, fragmentShader);
-      glLinkProgram(shaderID);
-
-      //More error checking
-      glGetProgramiv(shaderID, GL_LINK_STATUS, &success);
-      if(!success){
-        glGetProgramInfoLog(shaderID, 521, nullptr, errorLog);
-        log.write(errorLog);
-        log.write("\n");
-      }
-
-      glDeleteShader(vertexShader);
-      glDeleteShader(fragmentShader);
-      return shaderID;
+    void compile(const char* vertexSource, const char* fragmentSource) {
+		GLuint sVertex, sFragment;
+		// Vertex Shader
+		sVertex = glCreateShader(GL_VERTEX_SHADER);
+		glShaderSource(sVertex, 1, &vertexSource, NULL);
+		glCompileShader(sVertex);
+		// Fragment Shader
+		sFragment = glCreateShader(GL_FRAGMENT_SHADER);
+		glShaderSource(sFragment, 1, &fragmentSource, NULL);
+		glCompileShader(sFragment);
+		// If geometry shader source code is given, also compile geometry shader
+		// Shader Program
+		shaderID = glCreateProgram();
+		glAttachShader(shaderID, sVertex);
+		glAttachShader(shaderID, sFragment);
+		glLinkProgram(shaderID);
+		// Delete the shaders as they're linked into our program now and no longer necessery
+		glDeleteShader(sVertex);
+		glDeleteShader(sFragment);
     }
 
     // helper funcs I found online that will be used for transformations
@@ -74,6 +58,7 @@ namespace rb {
       if (useShader){
         init();
       }
+	  int debug = glGetUniformLocation(shaderID, name);
       glUniform1i(glGetUniformLocation(shaderID, name), value);
     }
 
@@ -123,6 +108,7 @@ namespace rb {
       if (useShader){
         init();
       }
+	  int debug = glGetUniformLocation(shaderID, name);
       glUniformMatrix4fv(glGetUniformLocation(shaderID, name), 1, GL_FALSE, glm::value_ptr(matrix));
     }
   };
