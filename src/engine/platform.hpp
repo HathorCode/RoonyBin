@@ -18,7 +18,6 @@ namespace rb {
 	#define defWindowCallback(name) LRESULT __stdcall name(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 	void ExitProgram() {
-		YSE::System().close();
 		rb::log.cleanup();
 		ExitProcess(0);
 	}
