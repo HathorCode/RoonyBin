@@ -63,63 +63,63 @@ namespace rb {
     }
 
     // helper funcs I found online that will be used for transformations
-    void setFloat(const GLchar *name, GLfloat value, GLboolean useShader){
+	void setFloat(const GLchar *name, GLfloat value, GLboolean useShader = false){
       if (useShader){
         init();
       }
       glUniform1f(glGetUniformLocation(shaderID, name), value);
     }
 
-    void setInteger(const GLchar *name, GLint value, GLboolean useShader) {
+    void setInteger(const GLchar *name, GLint value, GLboolean useShader = false) {
       if (useShader){
         init();
       }
       glUniform1i(glGetUniformLocation(shaderID, name), value);
     }
 
-    void setVector2f(const GLchar *name, GLfloat x, GLfloat y, GLboolean useShader){
+    void setVector2f(const GLchar *name, GLfloat x, GLfloat y, GLboolean useShader = false){
       if (useShader){
         init();
       }
       glUniform2f(glGetUniformLocation(shaderID, name), x, y);
     }
 
-    void setVector2f(const GLchar *name, const glm::vec2 &value, GLboolean useShader){
+	void setVector2f(const GLchar *name, const glm::vec2 &value, GLboolean useShader = false){
       if (useShader){
         init();
       }
       glUniform2f(glGetUniformLocation(shaderID, name), value.x, value.y);
     }
 
-    void setVector3f(const GLchar *name, GLfloat x, GLfloat y, GLfloat z, GLboolean useShader){
+	void setVector3f(const GLchar *name, GLfloat x, GLfloat y, GLfloat z, GLboolean useShader = false){
       if (useShader){
         init();
       }
       glUniform3f(glGetUniformLocation(shaderID, name), x, y, z);
     }
 
-    void setVector3f(const GLchar *name, const glm::vec3 &value, GLboolean useShader){
+	void setVector3f(const GLchar *name, const glm::vec3 &value, GLboolean useShader = false){
       if (useShader){
         init();
       }
       glUniform3f(glGetUniformLocation(shaderID, name), value.x, value.y, value.z);
     }
 
-    void setVector4f(const GLchar *name, GLfloat x, GLfloat y, GLfloat z, GLfloat w, GLboolean useShader) {
+	void setVector4f(const GLchar *name, GLfloat x, GLfloat y, GLfloat z, GLfloat w, GLboolean useShader = false) {
       if (useShader){
         init();
       }
       glUniform4f(glGetUniformLocation(shaderID, name), x, y, z, w);
     }
 
-    void setVector4f(const GLchar *name, const glm::vec4 &value, GLboolean useShader) {
+	void setVector4f(const GLchar *name, const glm::vec4 &value, GLboolean useShader = false) {
       if (useShader){
         init();
       }
       glUniform4f(glGetUniformLocation(shaderID, name), value.x, value.y, value.z, value.w);
     }
 
-    void setMatrix4(const GLchar *name, const glm::mat4 &matrix, GLboolean useShader){
+	void setMatrix4(const GLchar *name, const glm::mat4 &matrix, GLboolean useShader = false){
       if (useShader){
         init();
       }
