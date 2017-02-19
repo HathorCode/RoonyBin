@@ -63,14 +63,10 @@ namespace rb {
 								touch.ReleaseCircleIndex(ti.dwID);
 
 								touchCount++;
-							}
-							else {
-								//If the touch point already exists - ie. someone has held their finger
-								//on the screen or dragged it without lifting it off then GetCircleIndex
-								//will return a value by which we can retrieve information pertaining to
-								//that touch point from circlesArray. If the touch point doesn't exist then an
-								//array location will be allocated to it, a color created and stored along
-								//with its position on the screen and that array location is returned.
+							} else {
+								//If the touch point already exists - ie. someone has held their finger on the screen or dragged it without lifting it off then GetCircleIndex
+								//will return a value by which we can retrieve information pertaining to that touch point from circlesArray. If the touch point doesn't exist then an
+								//array location will be allocated to it, a color created and stored along with its position on the screen and that array location is returned.
 								index = touch.GetCircleIndex(ti.dwID);
 
 								circlesArray[index].pointX = ptInput.x;
@@ -78,8 +74,7 @@ namespace rb {
 							}
 						}
 
-						if (!CloseTouchInputHandle((HTOUCHINPUT)lParam))
-						{
+						if (!CloseTouchInputHandle((HTOUCHINPUT)lParam)) {
 							/*
 							// error handling
 							MessageBox(
@@ -96,8 +91,7 @@ namespace rb {
 				CloseTouchInputHandle((HTOUCHINPUT)lParam);
 
 				delete[] pInputs;
-			}
-			else {
+			} else {
 				// Handle the error here
 			}
 			InvalidateRect(hWnd, NULL, FALSE);
