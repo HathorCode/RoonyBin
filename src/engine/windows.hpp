@@ -18,14 +18,12 @@ namespace rb {
     HWND windowHandle;
     WNDCLASSEX windowClass;
     HDC deviceContext;
+    int WIDTH   = 1080;
+    int HEIGHT  = 720;
 
-
-
-    /*Tom, this is probably where you will have to handle inputs for touch */
-	/*>>Tom successfully handled inputs for touch here probably*/
     static LRESULT __stdcall WindowHandleInput(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-		
-		// For double buffering
+
+    // For double buffering
 		static HDC memDC = 0;
 		static HBITMAP hMemBmp = 0;
 		HBITMAP hOldBmp = 0;
@@ -37,7 +35,6 @@ namespace rb {
 		UINT cInputs;
 		PTOUCHINPUT pInputs;
 		POINT ptInput;
-
 
 		switch(msg) {
 		case WM_TOUCH: {
@@ -184,8 +181,8 @@ namespace rb {
         WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT,
         CW_USEDEFAULT,
-        720,	//Width
-        480,	//Height
+        1080,	//Width
+        720,	//Height
         nullptr,
         nullptr,
         windowClass.hInstance,
@@ -196,15 +193,39 @@ namespace rb {
             log.write("[Windows.hpp] Could not get device context.\n");
           }
 		  RegisterTouchWindow(windowHandle, 0);
-		  
+
 		  for (int i = 0; i < MAXPOINTS; i++) {
 			  circlesArray[i].sysID = -1;
 			  circlesArray[i].pointX = -1;
 			  circlesArray[i].pointY = -1;
 		  }
 
+		  // The standard size when you create a window includes the header bar and border
+		  // This leads to a client area with weird size, which this corrects before displaying the window
+		  RECT winRC, clientRC;
+		  GetWindowRect(windowHandle, &winRC); //get the current window rect
+		  GetClientRect(windowHandle, &clientRC); //get the current client rect
+		  // adjusted size 
+
+		  int windowSizeX = winRC.right - winRC.left;
+		  int windowSizeY = winRC.bottom - winRC.top;
+
+		  int clientSizeX = clientRC.right;
+		  int clientSizeY = clientRC.bottom;
+
+		  int borderSizeX = windowSizeX - clientSizeX;
+		  int borderSizeY = windowSizeY - clientSizeY;
+
+		  int adjustedX = borderSizeX + WIDTH;
+		  int adjustedY = borderSizeY + HEIGHT;
+
+		  //Actually adjusts the size
+		  SetWindowPos(windowHandle, 0, CW_USEDEFAULT, CW_USEDEFAULT, adjustedX, adjustedY, SWP_NOZORDER | SWP_NOMOVE);
+		  //Now we can use absolute coordinates to reference where the touch screen joystick is
+
           ShowWindow(windowHandle, SW_SHOWDEFAULT);
-          UpdateWindow(windowHandle);
+		  UpdateWindow(windowHandle);
+
           return true;
         } else {
           log.write("[Windows.hpp] Could not create window.\n");
@@ -236,5 +257,5 @@ namespace rb {
       return win.windowHandle;
     }
 
-	
+
   }
