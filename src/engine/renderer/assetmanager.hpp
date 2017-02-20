@@ -1,6 +1,7 @@
 #pragma once
 
 //#include "renderer.hpp"
+#include <io.h>
 #include "shader.hpp"
 #include "texture.hpp"
 #include "../opengl.hpp"
@@ -76,7 +77,7 @@ namespace rb {
       int width, height;
       unsigned char* imageData = stbi_load(fileName, &width, &height, 0, 4);
 
-	  if (imageData = nullptr) {
+	  if (imageData = nullptr) { 
 		  log.write("[AssetManager] Couldn't load image data");
 	  }
       tex.generate(width, height, imageData);
